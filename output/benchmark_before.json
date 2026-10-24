@@ -1,0 +1,66 @@
+{
+  "label": "before",
+  "model": "gpt-5.6-luna",
+  "questions": [
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 4.77,
+      "model_calls": 2,
+      "input_tokens": 5974,
+      "output_tokens": 397,
+      "cached": false,
+      "reply_start": "We have 27 hoodies, starting at $45! Highlights include the Ua Gameday Double Knit Hood an"
+    },
+    {
+      "question": "Do you have the Basic Hoodie Big Yale in medium?",
+      "seconds": 6.55,
+      "model_calls": 3,
+      "input_tokens": 6937,
+      "output_tokens": 142,
+      "cached": false,
+      "reply_start": "Yes\u2014the Basic Hoodie Big Yale is available in medium, but only 5 are left. It\u2019s $68. Boola"
+    },
+    {
+      "question": "Anything for Saybrook?",
+      "seconds": 6.43,
+      "model_calls": 2,
+      "input_tokens": 4561,
+      "output_tokens": 137,
+      "cached": false,
+      "reply_start": "We have 3 Saybrook options: the Logo T Shirt ($32), College Crewneck ($58), and Sweater Fl"
+    },
+    {
+      "question": "How much is the Yale Dad Crewneck?",
+      "seconds": 3.33,
+      "model_calls": 2,
+      "input_tokens": 4440,
+      "output_tokens": 96,
+      "cached": false,
+      "reply_start": "The Yale Dad Crewneck is $58. It comes in heather gray and navy blue."
+    },
+    {
+      "question": "What are your store hours?",
+      "seconds": 7.86,
+      "model_calls": 2,
+      "input_tokens": 4407,
+      "output_tokens": 134,
+      "cached": false,
+      "reply_start": "I don\u2019t have our current store hours available. Please contact Campus Customs at 57 Broadw"
+    },
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 5.37,
+      "model_calls": 2,
+      "input_tokens": 5974,
+      "output_tokens": 396,
+      "cached": false,
+      "reply_start": "We have 27 hoodies, starting at $45! Highlights include the Ua Gameday Double Knit Hood an"
+    }
+  ],
+  "totals": {
+    "seconds": 34.31,
+    "model_calls": 13,
+    "input_tokens": 32293,
+    "output_tokens": 1302
+  }
+}

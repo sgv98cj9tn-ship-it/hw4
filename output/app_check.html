@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Customs · App Check (Problem 11)</title>
+    <style>
+      :root {
+        --navy: #07152b;
+        --surface: #0c2142;
+        --border: #1d3c6b;
+        --yale: #00356b;
+        --text: #f3f6fb;
+        --muted: #a3b2c9;
+        --accent: #8db8ff;
+        --pass: #7ee2a8;
+        --fix: #ffd27a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--navy);
+        color: var(--text);
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+      }
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: 2.3rem;
+        margin: 0 0 8px;
+      }
+      h2 {
+        margin: 56px 0 8px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--yale);
+        font-size: 1.6rem;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin: 0 0 6px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .summary {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.95rem;
+      }
+      .summary th,
+      .summary td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      .summary th {
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .summary a {
+        color: var(--accent);
+      }
+      .check {
+        margin: 28px 0 0;
+        padding: 22px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+      }
+      .check h3 {
+        margin: 0 0 6px;
+        font-size: 1.3rem;
+      }
+      .badge {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font: 700 0.75rem/1.6 -apple-system, sans-serif;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+      }
+      .pass {
+        background: rgba(126, 226, 168, 0.15);
+        color: var(--pass);
+      }
+      .fixed {
+        background: rgba(255, 210, 122, 0.15);
+        color: var(--fix);
+      }
+      .steps {
+        margin: 6px 0 14px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      figure {
+        margin: 16px 0 0;
+      }
+      figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      figure.phone img {
+        width: 320px;
+        max-width: 100%;
+      }
+      .pair {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .pair figure {
+        flex: 1 1 280px;
+      }
+      figcaption {
+        margin-top: 10px;
+        font-size: 0.95rem;
+      }
+      figcaption strong {
+        color: #ffffff;
+      }
+      .proof {
+        margin: 10px 0 0;
+        padding: 12px 14px;
+        border-left: 4px solid var(--accent);
+        background: rgba(141, 184, 255, 0.08);
+        border-radius: 0 8px 8px 0;
+        font-size: 0.95rem;
+      }
+      code {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.88em;
+      }
+      .fix-note {
+        border-left-color: var(--fix);
+        background: rgba(255, 210, 122, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">MGT 409 · Homework 4 · Problem 11</p>
+      <h1>Campus Customs: App Check</h1>
+      <p class="muted">
+        Tested on the live site (frontend at <code>localhost:5173</code>, FastAPI backend at <code>localhost:8000</code>)
+        on October 24, 2026, as a guest and as the seeded test user. Screenshots are in
+        <code>app_check_images/</code>. All shopper details shown are test data, and no passwords or API keys appear.
+      </p>
+
+      <table class="summary" aria-label="Summary of checks">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Check</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><a href="#check-1">Chat checks an item's inventory (honest stock and price from the database)</a></td><td><span class="badge pass">PASS</span></td></tr>
+          <tr><td>2</td><td><a href="#check-2">Dynamic product cards after "What hoodies do you have?"</a></td><td><span class="badge pass">PASS</span> <span class="badge fixed">BUG FIXED</span></td></tr>
+          <tr><td>3</td><td><a href="#check-3">Problem 9 feature: demo store, from add to cart through confirmation</a></td><td><span class="badge pass">PASS</span></td></tr>
+          <tr><td>4</td><td><a href="#check-4">Extra: typo-tolerant search</a></td><td><span class="badge pass">PASS</span></td></tr>
+          <tr><td>5</td><td><a href="#check-5">Extra: login with saved chat history</a></td><td><span class="badge pass">PASS</span></td></tr>
+          <tr><td>6</td><td><a href="#check-6">Extra: custom order form saved to the database</a></td><td><span class="badge pass">PASS</span></td></tr>
+          <tr><td>7</td><td><a href="#check-7">Extra: the site on a phone screen</a></td><td><span class="badge pass">PASS</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2>Required checks</h2>
+
+      <section class="check" id="check-1">
+        <h3>1. Chat checks an item's inventory <span class="badge pass">PASS</span></h3>
+        <p class="steps">As a guest on the Saybrook College Crewneck page, I asked Handsome Dan: "Is the Saybrook College Crewneck in stock in large? How much is it?"</p>
+        <figure>
+          <img src="app_check_images/1-inventory-chat.jpg" alt="Chat answering that the Saybrook College Crewneck is available in large with only 2 left, for $58" />
+          <figcaption>
+            The chat answered: <strong>"Yes—the Saybrook College Crewneck is available in large, but only 2 are left. It's $58."</strong>
+          </figcaption>
+        </figure>
+        <p class="proof">
+          <strong>Proof it's honest:</strong> in <code>campus_customs.db</code>, the <code>inventory</code> table has
+          <code>quantity = 2</code> for this crewneck in size L, and the <code>catalogue</code> table has
+          <code>price = 58.0</code>. The chat's stock and price match the database exactly, because the agent got them from its
+          <code>check_stock</code> tool, not from memory. The size row on the page also shows XXL crossed out, which matches its
+          <code>quantity = 0</code>.
+        </p>
+      </section>
+
+      <section class="check" id="check-2">
+        <h3>2. Dynamic product cards after a category question <span class="badge pass">PASS</span> <span class="badge fixed">BUG FIXED</span></h3>
+        <p class="steps">In the chat, I asked: "What hoodies do you have?"</p>
+        <figure>
+          <img src="app_check_images/2-hoodie-cards.jpg" alt="Products page showing a chat results banner for 27 hoodies and hoodie product cards, with the chat open on the right" />
+          <figcaption>
+            The site jumped to the Products page and showed a <strong>"Chat results: 27 items"</strong> banner and <strong>27 hoodie cards</strong>
+            (image, name, garment type, and price), while the chat stayed open with a "27 items on the Products page →" link.
+          </figcaption>
+        </figure>
+        <p class="proof">
+          <strong>What this proves:</strong> the agent searched the catalogue, returned structured product IDs with
+          <code>show_on_page: true</code>, and the front end rendered them as the same cards used everywhere else. 27 is the true
+          number of hoodies in <code>campus_customs.db</code>. Each card still opens its product page (Problem 3 behavior).
+        </p>
+        <figure>
+          <img src="app_check_images/2b-bug-before-fix.jpg" alt="Before the fix: the chat results banner text was squeezed and overlapped by its button" />
+          <figcaption class="muted">Before the fix, at the same laptop width.</figcaption>
+        </figure>
+        <p class="proof fix-note">
+          <strong>Bug found and fixed:</strong> on a laptop-width screen (about 1024px) with the chat open, the filter sidebar and the
+          chat panel left too little room. The banner's text wrapped one word per line, and its <strong>Clear</strong> button overlapped it
+          (screenshot above). Fix in <code>frontend/src/index.css</code>: at widths of 861–1279px, while the chat is open, the filters
+          collapse into the <strong>Filters</strong> button (the same panel used on phones), and the banner wraps cleanly. Retested:
+          no overlap, and the Filters button opens and closes the panel.
+        </p>
+      </section>
+
+      <section class="check" id="check-3">
+        <h3>3. Problem 9 feature: the demo store <span class="badge pass">PASS</span></h3>
+        <p class="steps">
+          On <strong>Basic Hoodie Big Yale</strong>, I picked size M and quantity 2, added it to the cart, opened the cart, and
+          checked out as "Demo Shopper" with an example.com email and in-store pickup.
+        </p>
+        <figure>
+          <img src="app_check_images/3a-add-to-cart.jpg" alt="Product page with size M selected, 'Only 5 left in M', an added-to-cart message, and a cart badge showing 2" />
+          <figcaption>
+            <strong>Add to cart:</strong> size M is selected ("Only 5 left in M"), the message says "Added to cart … (2 in cart)", and the
+            nav cart icon shows a badge of <strong>2</strong>.
+          </figcaption>
+        </figure>
+        <div class="pair">
+          <figure>
+            <img src="app_check_images/3b-cart.jpg" alt="Cart page with 2 Basic Hoodie Big Yale in size M, total $136, and the demo store notice" />
+            <figcaption><strong>Cart:</strong> 2 × $68 = <strong>$136.00</strong>, with the "Demo store, no payment is taken" notice.</figcaption>
+          </figure>
+          <figure>
+            <img src="app_check_images/3c-order-confirmed.jpg" alt="Order confirmation page for demo order DEMO-CF0F1E, total $136" />
+            <figcaption><strong>Confirmation:</strong> demo order <strong>DEMO-CF0F1E</strong>, $136.00, ready for pickup at 57 Broadway. The cart badge cleared.</figcaption>
+          </figure>
+        </div>
+        <p class="proof">
+          <strong>What this proves:</strong> the full buying flow works from product to confirmation, the checkout page has no card
+          fields, and no payment is taken. I checked the database before and after: total stock stayed at <code>5,920</code>
+          units, and this hoodie still has <code>5</code> in M. So the demo order really doesn't change inventory.
+        </p>
+      </section>
+
+      <h2>Extra checks</h2>
+
+      <section class="check" id="check-4">
+        <h3>4. Typo-tolerant search <span class="badge pass">PASS</span></h3>
+        <p class="steps">In the chat, I asked with a misspelling: "do you have any saybrok stuff?"</p>
+        <figure>
+          <img src="app_check_images/4-typo-search.jpg" alt="Chat explaining it searched for saybrook instead of saybrok, with 3 Saybrook products on the page" />
+          <figcaption>
+            Dan replied: <strong>"I searched for 'saybrook' instead of 'saybrok'"</strong>, listed the 3 Saybrook items with prices,
+            and put them on the Products page.
+          </figcaption>
+        </figure>
+        <p class="proof">
+          <strong>What this proves:</strong> the search tool corrected the typo, the agent told the shopper what it searched for
+          instead of silently changing it, and the results (T-shirt $32, crewneck $58, fleece jacket $98) are the real Saybrook items
+          and prices.
+        </p>
+      </section>
+
+      <section class="check" id="check-5">
+        <h3>5. Login with saved chat history <span class="badge pass">PASS</span></h3>
+        <p class="steps">I logged in as the seeded test user (I didn't screenshot the login form, so no password appears) and opened the chat.</p>
+        <figure>
+          <img src="app_check_images/5-login-history.jpg" alt="Logged in as Test; the chat greets Test by name, says chats are saved, and shows the earlier conversation" />
+          <figcaption>
+            The nav shows <strong>"Hi, Test"</strong>, the chat says <strong>"Signed in as Test · chats are saved"</strong>, Dan greets the
+            user by first name, and the saved <strong>Earlier conversation</strong> reloads from the database.
+          </figcaption>
+        </figure>
+        <p class="proof">
+          <strong>What this proves:</strong> logged-in shoppers' chats are stored in the <code>chat_messages</code> table and
+          reloaded when they return, and the agent knows who it's talking to. Logging out cleared the chat window back to a guest
+          greeting.
+        </p>
+      </section>
+
+      <section class="check" id="check-6">
+        <h3>6. Custom order form <span class="badge pass">PASS</span></h3>
+        <p class="steps">While logged in as the test user, I opened <strong>Request a custom order</strong>, filled in the remaining fields, and submitted.</p>
+        <div class="pair">
+          <figure>
+            <img src="app_check_images/6a-custom-order-form.jpg" alt="Custom order form with name and email pre-filled from the account, Hoodie, quantity 20, date 12/05/2026" />
+            <figcaption><strong>Form:</strong> first name, last name, and email were <strong>pre-filled</strong> from the account; I chose Hoodie, 20, and December 5, 2026.</figcaption>
+          </figure>
+          <figure>
+            <img src="app_check_images/6b-custom-order-confirmed.jpg" alt="Confirmation showing request number CC-4F7F23 for 20 hoodies needed by December 5, 2026" />
+            <figcaption><strong>Confirmation:</strong> request number <strong>CC-4F7F23</strong>, Hoodie, 20, needed by December 5, 2026.</figcaption>
+          </figure>
+        </div>
+        <p class="proof">
+          <strong>What this proves:</strong> the request was saved. The new <code>custom_requests</code> table has the row
+          <code>CC-4F7F23 | user_id 1 | Test | User | Hoodie | 20 | 2026-12-05 | new</code>, linked to the logged-in user. It's labeled
+          "TEST REQUEST (Problem 11 app check)" in its customization text.
+        </p>
+      </section>
+
+      <section class="check" id="check-7">
+        <h3>7. The site on a phone screen <span class="badge pass">PASS</span></h3>
+        <p class="steps">I viewed the site at phone width (375 × 812) and checked every page for sideways scrolling.</p>
+        <div class="pair">
+          <figure class="phone">
+            <img src="app_check_images/7a-phone-home.jpg" alt="Home page on a phone: Handsome Dan illustration, headline, and full-width buttons" />
+            <figcaption><strong>Home:</strong> Dan on top, a readable headline, and full-width buttons.</figcaption>
+          </figure>
+          <figure class="phone">
+            <img src="app_check_images/7b-phone-products.jpg" alt="Products page on a phone: search box, Filters button, sort menu, and two product cards per row" />
+            <figcaption><strong>Products:</strong> a full-width search box, a Filters button, and two cards per row.</figcaption>
+          </figure>
+        </div>
+        <p class="proof">
+          <strong>What this proves:</strong> the layout adapts to phones. The page was exactly 375px wide (no sideways scrolling) on
+          Home, Products, a product page, About, Log in, Cart, Custom order, and a collection page.
+        </p>
+      </section>
+
+      <h2>Notes</h2>
+      <ul class="muted">
+        <li>
+          One bug was found and fixed (check 2). The other checks passed on the first try.
+        </li>
+        <li>
+          Testing created a little real data, as expected for a live-site test: custom request <code>CC-4F7F23</code> in
+          <code>custom_requests</code>. The demo order changed nothing in the database. The guest chats in checks 1, 2, and 4 aren't
+          saved, because only logged-in chats are.
+        </li>
+        <li>
+          Screenshots were taken with page animations paused so each one shows the settled page. In a normal browser, cards and
+          pages fade in over about a third of a second.
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

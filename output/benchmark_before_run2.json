@@ -1,0 +1,66 @@
+{
+  "label": "before_run2",
+  "model": "gpt-5.6-luna",
+  "questions": [
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 5.99,
+      "model_calls": 2,
+      "input_tokens": 5974,
+      "output_tokens": 395,
+      "cached": false,
+      "reply_start": "We have 27 hoodies, starting at $45! Highlights include the Ua Gameday Double Knit Hood an"
+    },
+    {
+      "question": "Do you have the Basic Hoodie Big Yale in medium?",
+      "seconds": 5.06,
+      "model_calls": 3,
+      "input_tokens": 6947,
+      "output_tokens": 147,
+      "cached": false,
+      "reply_start": "Yes\u2014the Basic Hoodie Big Yale is available in medium, but only 5 are left. It\u2019s $68. Boola"
+    },
+    {
+      "question": "Anything for Saybrook?",
+      "seconds": 3.74,
+      "model_calls": 2,
+      "input_tokens": 4551,
+      "output_tokens": 135,
+      "cached": false,
+      "reply_start": "We have 3 Saybrook options: the Logo T Shirt ($32), College Crewneck ($58), and Sweater Fl"
+    },
+    {
+      "question": "How much is the Yale Dad Crewneck?",
+      "seconds": 6.18,
+      "model_calls": 3,
+      "input_tokens": 6882,
+      "output_tokens": 165,
+      "cached": false,
+      "reply_start": "The Yale Dad Crewneck is $58. It\u2019s available in heather gray and navy blue, with XS, S, an"
+    },
+    {
+      "question": "What are your store hours?",
+      "seconds": 3.83,
+      "model_calls": 2,
+      "input_tokens": 6905,
+      "output_tokens": 138,
+      "cached": false,
+      "reply_start": "I\u2019m sorry, but I don\u2019t have the store hours available. Campus Customs is at 57 Broadway, N"
+    },
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 4.84,
+      "model_calls": 2,
+      "input_tokens": 5974,
+      "output_tokens": 394,
+      "cached": false,
+      "reply_start": "We have 27 hoodies, starting at $45! Highlights include the Ua Gameday Double Knit Hood an"
+    }
+  ],
+  "totals": {
+    "seconds": 29.64,
+    "model_calls": 14,
+    "input_tokens": 37233,
+    "output_tokens": 1374
+  }
+}

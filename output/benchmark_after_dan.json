@@ -1,0 +1,66 @@
+{
+  "label": "after_dan",
+  "model": "gpt-5.6-luna",
+  "questions": [
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 5.12,
+      "model_calls": 2,
+      "input_tokens": 7360,
+      "output_tokens": 380,
+      "cached": false,
+      "reply_start": "We have 27 hoodies! A few favorites are the Ua Gameday Double Knit Hood ($45), Yale Sports"
+    },
+    {
+      "question": "Do you have the Basic Hoodie Big Yale in medium?",
+      "seconds": 4.78,
+      "model_calls": 2,
+      "input_tokens": 5900,
+      "output_tokens": 98,
+      "cached": false,
+      "reply_start": "Yes\u2014the Basic Hoodie Big Yale is available in medium, but only 5 are left. It\u2019s $68. Woof!"
+    },
+    {
+      "question": "Anything for Saybrook?",
+      "seconds": 3.97,
+      "model_calls": 2,
+      "input_tokens": 5937,
+      "output_tokens": 137,
+      "cached": false,
+      "reply_start": "We have 3 Saybrook options! I sniffed out the Saybrook Logo T Shirt ($32), Saybrook Colleg"
+    },
+    {
+      "question": "How much is the Yale Dad Crewneck?",
+      "seconds": 4.05,
+      "model_calls": 2,
+      "input_tokens": 5830,
+      "output_tokens": 105,
+      "cached": false,
+      "reply_start": "The Yale Dad Crewneck is $58. It\u2019s a heather gray long-sleeve crewneck with a navy blue Ya"
+    },
+    {
+      "question": "What are your store hours?",
+      "seconds": 15.54,
+      "model_calls": 2,
+      "input_tokens": 5820,
+      "output_tokens": 170,
+      "cached": false,
+      "reply_start": "I don\u2019t have the store hours, sorry! Campus Customs is at 57 Broadway in New Haven, across"
+    },
+    {
+      "question": "What hoodies do you have?",
+      "seconds": 0.0,
+      "model_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cached": true,
+      "reply_start": "We have 27 hoodies! A few favorites are the Ua Gameday Double Knit Hood ($45), Yale Sports"
+    }
+  ],
+  "totals": {
+    "seconds": 33.46,
+    "model_calls": 10,
+    "input_tokens": 30847,
+    "output_tokens": 890
+  }
+}
